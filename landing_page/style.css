@@ -80,3 +80,40 @@ button {
     height: 3em;
     border-radius: 8px;
 }
+
+#information {
+    padding: 2em 10em;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#information .header {
+    font-size: 36px;
+    font-weight: 900;
+    color: #1f2937;
+    padding: 0.5em;
+}
+
+#circulation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2em;
+}
+
+#circulation .window {
+    display: flex;
+    flex-direction: column;
+    width: 10em;
+
+}
+
+#circulation .windowImg {
+    height: 10em;
+    border:3px solid #3882f6;
+    border-radius: 8px;
+
+}
