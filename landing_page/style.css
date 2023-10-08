@@ -117,3 +117,54 @@ button {
     border-radius: 8px;
 
 }
+
+#quote {
+    padding: 5em 10em;
+    background-color: e5e7eb;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#quote .desc{
+    color: #1f2937;
+    font-size: 36px;
+    font-weight: light;
+    font-style: italic;
+}
+
+#quote .writer {
+    font-size: 36px;
+    font-weight: 900;
+    color: #1f2937;
+}
+
+#action {
+    margin: 4em 8em;
+    padding: 3em 5em;
+    background-color: 3882f6;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 15em;
+}
+
+#action .header {
+    font-size: 36px;
+    font-weight: 900;
+    color: #1f2937;
+}
+
+#action button {
+    border: white 1px solid;
+
+}
+
+#copyright {
+    background-color: #1f2937;
+    padding: 1em 12em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
