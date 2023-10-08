@@ -5,3 +5,10 @@ I'll write notes and exercises here.
 <> agnle brackets  
 / forward slash
 
+ref:
+
+https://www.theodinproject.com/lessons/foundations-landing-page
+
+https://pablomattot.github.io/landing-page/#
+
+https://github.com/pablomattot/landing-page/blob/main/style.css
