@@ -12,27 +12,25 @@ function getComputerChoice() {
     return options[getRandomIntInclusive(0, 2)]
 }
 
-function playRound(playerSelection, computerSelection) {
-    let playerSelectionAt = findIndexOf(playerSelection)
-    let computerSelectionAt = findIndexOf(computerSelection)
+function playRound(playerSelectionAt, computerSelectionAt) {
+    
 
-    let result = playerSelectionAt - computerSelectionAt
-    let statement
+    let result
 
-    switch(result) {
+    switch(playerSelectionAt - computerSelectionAt) {
         case 0:
-            statement = "You are even!"
+            result = "equal"
             break;
         case -2:
         case 1:
-            statement = "You Win!"
+            result = "win"
             break;
         case 2:
         case -1:
-            statement = "You Lose!"
+            result = "lose"
             break;
     }
-    return statement
+    return result
    
 }
 
@@ -45,6 +43,35 @@ function findIndexOf(word) {
     return index
 }
 
+let youWin = 0, computerWin = 0
 for (let i = 0; i < 5; i++) {
-    console.log(playRound("Rock", getComputerChoice()))
+    let input = prompt("please input your guess")
+    let playerSelectionAt = findIndexOf(input)
+    let computerSelectionAt = findIndexOf(getComputerChoice())
+    let statementRound
+    switch(playRound(playerSelectionAt, computerSelectionAt)) {
+        case "equal":
+            youWin += 0.5
+            computerWin += 0.5
+            statementRound = `You are even! ${options[playerSelectionAt]} equals ${options[computerSelectionAt]}`
+            break
+        case "win":
+            youWin++
+            statementRound = `You Win! ${options[playerSelectionAt]} beats ${options[computerSelectionAt]}`
+            break
+        case "lose":
+            statementRound = `You Lose! ${options[computerSelectionAt]} beats ${options[playerSelectionAt]}`
+            computerWin++
+            break
+
+    }
+    console.log(statementRound)
+}
+if (youWin > computerWin) {
+    console.log(`You win! ${youWin} : ${computerWin}`)
+} else if (youWin === computerWin) {
+    console.log(`You are even! ${youWin} : ${computerWin}`)
+} else {
+    console.log(`You lose! ${youWin} : ${computerWin}`)
+
 }
