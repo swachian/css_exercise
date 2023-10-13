@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping list</title>
+</head>
+<body>
+    <h2>My shopping list</h2>
+    <div id="inputArea">
+        <label for="aa">Enter a new item:</label>
+        <input type="text" id="inputItem">
+        <button>Add item</button>
+    </div>
+    <ul id="showList">
+
+    </ul>
+
+    <script>
+        let showList = document.querySelector("#showList");
+        let text = document.querySelector("#inputItem");
+        document.querySelector("button").addEventListener("click", (e) => {
+            console.log(e);
+            console.log(text.value);
+            let value = text.value;
+            if (value) {
+                text.value = '';
+                let newItem = document.createElement('li');
+                newItem.textContent = value;
+                let button = document.createElement("button");
+                button.textContent = 'delete';
+                button.addEventListener('click', (e) => {
+                    showList.removeChild(newItem);
+                })
+                newItem.append(button);
+                showList.append(newItem);
+            }
+        })
+    </script>
+</body>
+</html>
