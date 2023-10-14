@@ -44,29 +44,76 @@ function findIndexOf(word) {
 }
 
 let youWin = 0, computerWin = 0
-for (let i = 0; i < 5; i++) {
-    let input = prompt("please input your guess")
-    let playerSelectionAt = findIndexOf(input)
-    let computerSelectionAt = findIndexOf(getComputerChoice())
-    let statementRound
-    switch(playRound(playerSelectionAt, computerSelectionAt)) {
-        case "equal":
-            youWin += 0.5
-            computerWin += 0.5
-            statementRound = `You are even! ${options[playerSelectionAt]} equals ${options[computerSelectionAt]}`
-            break
-        case "win":
-            youWin++
-            statementRound = `You Win! ${options[playerSelectionAt]} beats ${options[computerSelectionAt]}`
-            break
-        case "lose":
-            statementRound = `You Lose! ${options[computerSelectionAt]} beats ${options[playerSelectionAt]}`
-            computerWin++
-            break
-
+function startOld() {
+    for (let i = 0; i < 5; i++) {
+        let input = prompt("please input your guess")
+        let playerSelectionAt = findIndexOf(input)
+        let computerSelectionAt = findIndexOf(getComputerChoice())
+        let statementRound
+        switch(playRound(playerSelectionAt, computerSelectionAt)) {
+            case "equal":
+                youWin += 0.5
+                computerWin += 0.5
+                statementRound = `You are even! ${options[playerSelectionAt]} equals ${options[computerSelectionAt]}`
+                break
+            case "win":
+                youWin++
+                statementRound = `You Win! ${options[playerSelectionAt]} beats ${options[computerSelectionAt]}`
+                break
+            case "lose":
+                statementRound = `You Lose! ${options[computerSelectionAt]} beats ${options[playerSelectionAt]}`
+                computerWin++
+                break
+    
+        }
+        console.log(statementRound)
     }
-    console.log(statementRound)
 }
+let result = document.querySelector("#result");
+let match = (button) => {
+    let matchClick = (e) => {
+        console.log(button.textContent);
+        let playerSelectionAt = findIndexOf(button.textContent);
+        let computerSelectionAt = findIndexOf(getComputerChoice());
+        let statementRound
+        switch(playRound(playerSelectionAt, computerSelectionAt)) {
+            case "equal":
+                youWin += 0.5
+                computerWin += 0.5
+                statementRound = `You are even! ${options[playerSelectionAt]} equals ${options[computerSelectionAt]}`
+                break
+            case "win":
+                youWin++
+                statementRound = `You Win! ${options[playerSelectionAt]} beats ${options[computerSelectionAt]}`
+                break
+            case "lose":
+                statementRound = `You Lose! ${options[computerSelectionAt]} beats ${options[playerSelectionAt]}`
+                computerWin++
+                break
+    
+        }
+        let divResult = document.createElement('p');
+        divResult.textContent = statementRound;
+        result.append(divResult);
+        console.log(statementRound);
+        console.log(`${youWin} : ${computerWin}`);
+        if (youWin >=5 || computerWin >=5 ) {
+            document.querySelectorAll('button').forEach(button => {
+                button.removeEventListener('click', matchClick);
+                console.log("match done");
+            });
+            let totalResult = document.createElement('p');
+            totalResult.textContent = "match done " + `${youWin} : ${computerWin}`
+            result.append(totalResult);
+        }
+    }
+    return matchClick;
+    
+};
+document.querySelectorAll('button').forEach(button => {
+    button.addEventListener('click', match(button));
+})
+
 if (youWin > computerWin) {
     console.log(`You win! ${youWin} : ${computerWin}`)
 } else if (youWin === computerWin) {
