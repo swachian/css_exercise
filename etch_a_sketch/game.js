@@ -29,3 +29,15 @@ function hoverInit() {
 dictate(16);
 hoverInit();
 
+const data = ['car', 'car', 'truck', 'courier']
+
+const sumed = data.reduce((sum, one) => {
+    if (sum[one]) {
+        sum[one] += 1;
+    } else {
+        sum[one] = 1;
+    }
+    return sum;
+}, {});
+
+console.log(sumed);
