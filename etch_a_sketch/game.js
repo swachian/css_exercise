@@ -43,4 +43,4 @@ const sumed = data.reduce((sum, one) => {
 console.log(sumed);
 
 const entries = Object.entries(sumed).sort((a, b) => { return a[1] < b[1] ? -1 : 1});
-console.log(entries);
+console.table(entries);
