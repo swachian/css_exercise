@@ -29,7 +29,7 @@ function hoverInit() {
 dictate(16);
 hoverInit();
 
-const data = ['car', 'car', 'truck', 'courier']
+const data = ['car', 'car', 'truck', 'courier', 'courier', 'courier']
 
 const sumed = data.reduce((sum, one) => {
     if (sum[one]) {
@@ -41,3 +41,6 @@ const sumed = data.reduce((sum, one) => {
 }, {});
 
 console.log(sumed);
+
+const entries = Object.entries(sumed).sort((a, b) => { return a[1] < b[1] ? -1 : 1});
+console.log(entries);
