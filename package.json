@@ -1,0 +1,23 @@
+{
+    "name": "css-exercises",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "author": "",
+    "devDependencies": {
+      "jest": "^29.6.4",
+      "jest-cli": "^29.6.4"
+    },
+    "scripts": {
+      "test": "jest"
+    },
+    "eslintConfig": {
+      "root": true
+    },
+    "jest": {
+      "testPathIgnorePatterns": [
+        "generator-exercise/"
+      ]
+    }
+  }
+  

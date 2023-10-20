@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator
+
+    </title>
+    <script src="calculator.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="main">
+        <div id="show"></div>
+        <div id="clr_del">
+            <div id="clear"><button v="clr">CLR</button></div>
+            <div id="delete"><button v="del">DEL</button></div>
+        </div>
+        <div id="row2">
+            <div id="keys">
+                <div><button v="1">1</button><button v="2">2</button><button v="3">3</button></div>
+                <div><button v="4">4</button><button v="5">5</button><button v="6">6</button></div>
+                <div><button v="7">7</button><button v="8">8</button><button v="9">9</button></div>
+                <div class="lastLine"><button id="zero" v="0">0</button><button>=</button></div>
+            </div>
+            <div id="operations"><button>+</button><button>-</button><button>*</button><button>/</button></div>
+    
+        </div>
+    </div>
+
+    <script>
+        let showing = document.querySelector("#show").textContent;
+
+        function init() {
+            let numbers = document.querySelectorAll("button[v]");
+            numbers.forEach(number => {number.addEventListener('click', () => {
+                    let key = number.getAttribute("v");
+                    showing = computeShow(key, showing);
+                    document.querySelector("#show").textContent = showing;
+                }
+
+            )});
+
+        }
+
+        init();
+    </script>
+</body>
+</html>
