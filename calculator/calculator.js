@@ -1,4 +1,4 @@
-function Calculator(s) {
+function Calculator() {
     let ALG_OPERATORS = ['+', '-', '*', '/'];
     this.showing = '';
     this.firstValue = '';
@@ -13,37 +13,37 @@ function Calculator(s) {
         }
     }
 
-    this.updateCurrentValue = function(value) {
-        if (this.secondValue) {
-            this.secondValue = value;
+    this.updateCurrentValue = function(key) {
+        if (this.operator) {
+            this.secondValue += key;
         } else {
-            this.firstValue = value;
+            this.firstValue += key;
         }
     }
 
     this.computeShow = function(key) {
         let result;
         if (key === 'clr') {
-            result = clr();
+            this.clr();
         } else if (key === 'del') {
-            if (this.showing) {
-                result = currentValue().slice(0, -1) ;
+            this.del();
+        } else if (key === '=') {
+            if (this.operator) {
+                this.firstValue = this.compute().toString();
+                this.operator = '';
+                this.secondValue = '';
             }
         } else if (ALG_OPERATORS.includes(key)) {
             if (this.operator) {
-
+                this.firstValue = this.compute().toString();
+                this.operator = key;
+                this.secondValue = '';
             } else {
                 this.operator = key;
-                this.firstValue = currentValue();
-                }
+            }
         } else {
             // number
-            if (this.currentValue()) {
-                result = this.currentValue() + key
-            } else {
-                result = key.toString();
-            }
-            this.updateCurrentValue(result);
+            this.updateCurrentValue(key);
 
         }
         return `${this.firstValue}${this.operator}${this.secondValue}`;
@@ -51,9 +51,34 @@ function Calculator(s) {
 
     
 
-    function clr() {
-        return '';
+    this.clr = function() {
+        this.firstValue = '';
+        this.secondValue = '';
+        this.operator = '';
     };
+
+    this.del = function() {
+        if (this.secondValue) {
+            this.secondValue = this.secondValue.slice(0, -1);
+        } else if (this.operator) {
+            this.operator = '';
+        } else if (this.firstValue) {
+            this.firstValue = this.firstValue.slice(0, -1);
+        }
+    }
+
+    this.compute = function() {
+        switch(this.operator) {
+            case '+':
+                return Number(this.firstValue) + Number(this.secondValue);
+            case '-':
+                return Number(this.firstValue) - Number(this.secondValue);
+            case '*':
+                return Math.floor(this.firstValue*this.secondValue);
+            case '/':
+                return Math.floor(this.firstValue/this.secondValue);
+        }
+    }
 
 }
 

@@ -6,7 +6,7 @@
     <title>Calculator
 
     </title>
-    <script src="calculator.js" defer></script>
+    <script src="calculator.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,9 +21,9 @@
                 <div><button v="1">1</button><button v="2">2</button><button v="3">3</button></div>
                 <div><button v="4">4</button><button v="5">5</button><button v="6">6</button></div>
                 <div><button v="7">7</button><button v="8">8</button><button v="9">9</button></div>
-                <div class="lastLine"><button id="zero" v="0">0</button><button>=</button></div>
+                <div class="lastLine"><button id="zero" v="0">0</button><button v="=">=</button></div>
             </div>
-            <div id="operations"><button>+</button><button>-</button><button>*</button><button>/</button></div>
+            <div id="operations"><button v="+">+</button><button v="-">-</button><button v="*">*</button><button v="/">/</button></div>
     
         </div>
     </div>
@@ -32,10 +32,12 @@
         let showing = document.querySelector("#show").textContent;
 
         function init() {
+            let calculator = new Calculator();
+
             let numbers = document.querySelectorAll("button[v]");
             numbers.forEach(number => {number.addEventListener('click', () => {
                     let key = number.getAttribute("v");
-                    showing = computeShow(key, showing);
+                    showing = calculator.computeShow(key);
                     document.querySelector("#show").textContent = showing;
                 }
 
